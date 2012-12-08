@@ -84,8 +84,9 @@ d3.json("BostonTracts.geojson", function(tracts) {
         var newscale = 1;
         var currenttranslate = d3.transform( d3.select(svg.selectAll("g[geoid='" + d.feature.properties.GEOID + "']")[0][0]).attr("transform") ).translate;
         var currentscale = d3.transform( d3.select(svg.selectAll("g[geoid='" + d.feature.properties.GEOID + "']")[0][0]).attr("transform") ).scale;
-        var tx = (currenttranslate[0] - d.x) * newscale / currentscale[0] + d.x;
-        var ty = (currenttranslate[1] - d.y) * newscale / currentscale[1] + d.y;
+        console.log(d);
+        var tx = (currenttranslate[0] - d.dx) * newscale / currentscale[0] + d.dx;
+        var ty = (currenttranslate[1] - d.dy) * newscale / currentscale[1] + d.dy;
         d3.select(svg.selectAll("g[geoid='" + d.feature.properties.GEOID + "']")[0][0]).attr("transform", "translate(" + tx + ", " + ty + ") scale(" + newscale + ")");
       });
     }
